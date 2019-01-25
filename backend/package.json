@@ -1,0 +1,23 @@
+{
+  "name": "angleo-backend",
+  "version": "1.0.0",
+  "description": "Backend the Angleo application.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alvintangz/angleo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alvintangz/angleo/issues"
+  },
+  "homepage": "https://github.com/alvintangz/angleo#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongoose": "^5.4.6"
+  }
+}
