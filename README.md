@@ -1,4 +1,4 @@
-# Angelo
+# Angleo
 
 ## Description
 A platform for Anglophones in Quebec, Canada.
