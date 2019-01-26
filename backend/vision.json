@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "e-copilot-229118",
+  "private_key_id": "25127234b0d6754734f080855c8ea3fae10b1801",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCjYoy7YGmVHhHF\nc+YwR8p9x7fzANvia9Dw2C6O/jmbu2i/NDuWsidHmJewW4W2EkKZ22sGmV2TwTbK\nP6ZSuOjNanYZxNCo/C2iqk5rRtR7gAedrdPOozveAu0F/vIoKPk49rx9jmKjR9yl\nXqQmiVcuPzUutQbAmbahYov2Rf1/wonDDPPDcw/A4SSyxWTzk6HT+CFaeX0plzqQ\nG41L4+jTRPDHwaoZXkJx0lsvEJl7Wob8HuDhcF2koc8AR7MzK6F0he5UQfkaQf6E\nyvpOAU6KPpFaHudPSJNCahV/7M490YBkgJDG5VsB4CrYkpgfpM/Ncv6/pAWdhhTV\nffsC278TAgMBAAECggEABL8LYn5Vvif671uo+VOboM+oSAtM33fcVxwvpwCVYsel\ned2mDMuHgpYNzcrZ5oiorOAee8CmzEOdR2/dU1fdUoBvLBfglUzVKSMydQyiHJ37\ndQJKH8M/eIC0MpUoSMa7OuyxaxMklR0d9OcpGi8iIfo1YXnLfS+MxnYetMBAz9qA\nzy7toZf4+mFHXLSEsXX4yyTuf6r0JyUm4N6nAWGIKs1MUUCloTC9zGawnHxuz16L\nJyCUrIPbj9ull94OENqtmDzPWdJH4+AgWL219+QCsa/A+pnexguGmNAbZVf6c6LP\nAaWZooL+8dt/DxIgiA77/gG41YddedyJKVMDrmlS0QKBgQDZOHM2EHmonfOD89TH\nTv11+UwLs0sct30xN92JKcQqc2gHbTyo3PgumXxkzitA43R4e4QkWi/f+NmaUzBe\niUfeuovfa5HyNIbt9Bkw6gIXY386deRW4vEDPUIhh0uOxXQT6Rd3TJVMQpf2pklu\nMk+6OKOAA3guDRcU4ESYrzAFqQKBgQDAjaxWjn4DNlYAH8eS4WkPLGzSnb1EbIQW\ncL0Yew12LTOWL/QzVaj+6ZWqhhbysc2XudX700fKB90E3RJbRclMJYDXQgHEDfcu\nSMVi+x25UuMUzBGgzMkHb50yAJukyHS8CGJSkD2nSIVLYgEUf43qymPnZy9+55cB\nIa1dS1lcWwKBgCoCy+2B5DWjTsyPZPCjK0wcygNdSsKkDjdtqY/0nvbi2RTOoLO8\nANfqYW+RnDXxh74hjV4Gf0ne9B7vxeQSwu6lv5WXVWO1mv78fb7DE2J4oMuqr13K\niHhq6ZZYd1mGgLu1Eg/FpP5ZxtAyOvNwEZFfkOeaRC0L5RHpifrJrwz5AoGAe0U3\no2ItwhizDflKZvnvrEsgj+V0Ga3vEf6y0E1W3OUrNWcVyxd3zVn0+upFHrI9kHjk\nSQeF2g0Wrdppugz/RcRsq2ISh1T5faQQ2cEx0kcCIXpTfsIboKsP08cX3XKHaSlk\n6L52+fUvgIcJcfoG/Nz9AFPK0E+rGIpa1nM6jikCgYEAs+LB5k/7kwIuAQRYJCz2\ntBz9jBa6p7yZMEW0YW3R9IHzdS7BBjVLfh6uaDIfn/anLt26m3IQ3nDughGQvbVL\n3YpKodQPJwjfyr5a3qdanPb2iXdtykszRzYgep8MbYWIVsEprZkiUsLlbc9rgLSU\nDxid0IYpAywbAd8/EneWZUQ=\n-----END PRIVATE KEY-----\n",
+  "client_email": "angleo2@e-copilot-229118.iam.gserviceaccount.com",
+  "client_id": "109602722715045265752",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/angleo2%40e-copilot-229118.iam.gserviceaccount.com"
+}
