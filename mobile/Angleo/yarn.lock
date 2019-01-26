@@ -5127,6 +5127,13 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://na.artifactory.swg-devops.com:443/artifactory/api/npm/hyc-ba-npm-virtual/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha1-TxonOv38jzSIqMUWv9p4+HI1I2I=
 
+react-native-camera@^1.9.2:
+  version "1.9.2"
+  resolved "https://na.artifactory.swg-devops.com:443/artifactory/api/npm/hyc-ba-npm-virtual/react-native-camera/-/react-native-camera-1.9.2.tgz#c5c458dbf05ce7d7e3e9c5f1a53c600569fb78ff"
+  integrity sha1-xcRY2/Bc59fj6cXxpTxgBWn7eP8=
+  dependencies:
+    prop-types "^15.6.2"
+
 react-native-elements@^0.19.1:
   version "0.19.1"
   resolved "https://na.artifactory.swg-devops.com:443/artifactory/api/npm/hyc-ba-npm-virtual/react-native-elements/-/react-native-elements-0.19.1.tgz#f92b69d864a150215d01f81fe3c52a9cada83e45"
