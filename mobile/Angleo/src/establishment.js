@@ -8,7 +8,7 @@ import {
   View
 } from 'react-native';
 
-import { Rating, Avatar } from 'react-native-elements';
+import { Rating, Avatar, Header } from 'react-native-elements';
 
 class Establishment extends Component {
   state = {
@@ -27,20 +27,28 @@ class Establishment extends Component {
     const { rating } = this.props;
     return (
       <View>
-      <FlatList
-        data={this.state.data}
-        renderItem={this.renderItem}
+      <Header
+      backgroundColor= '#001F97'
+      centerComponent={{ text: 'Name of the place', style: { color: '#fff' } }}
       />
+      <View>
       <Avatar
-      xlarge
+      width={425}
       source={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"}}
       activeOpacity={0.7}
-      style={{
+      style={{ paddingVertical: 10,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
       }}
       />
+      </View>
+
+      <FlatList
+        data={this.state.data}
+        renderItem={this.renderItem}
+      />
+
       <Rating
       showRating
       imageSize={20}
