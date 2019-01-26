@@ -9,6 +9,7 @@ app.get('/', function(req, res) {
 });
 
 app.use('/rest', require("./rest/translate.js"));
+app.use('/rest', require("./rest/search.js"));
 
 app.listen(app.get('port'), function(){
     console.log( 'Server running on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.' );
