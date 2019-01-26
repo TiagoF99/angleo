@@ -20,7 +20,6 @@ class Establishment extends Component {
   render() {
     return (
       <View>
-      <Text>{this.state.data.name}</Text>
       <FlatList
         data={this.state.data}
         renderItem={this.renderItem}

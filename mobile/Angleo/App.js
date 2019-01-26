@@ -9,10 +9,22 @@ import Establishment from './src/establishment';
 
 const HomeStack = createStackNavigator({
   Home: Home,
+},
+{
+    headerMode: 'none',
+    navigationOptions: {
+        headerVisible: false,
+    }
 });
 
 const TranslationStack = createStackNavigator({
   Translation: Home
+},
+{
+    headerMode: 'none',
+    navigationOptions: {
+        headerVisible: false,
+    }
 });
 
 const MainNavigator = createBottomTabNavigator({
