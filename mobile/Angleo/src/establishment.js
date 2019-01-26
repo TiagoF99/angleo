@@ -8,22 +8,19 @@ import {
   View
 } from 'react-native';
 
-import { Rating } from 'react-native-elements';
-import { Avatar } from 'react-native-elements';
-
-const {width} = Dimensions.get('window')
+import { Rating, Avatar } from 'react-native-elements';
 
 class Establishment extends Component {
   state = {
     data: {},
   }
 
-  ratingCompleted(rating) {
-  console.log("Rating is: " + rating)
+  componentDidMount() {
+    //    fetch()
   }
 
-  componentDidMount() {
-//    fetch()
+  ratingCompleted(rating) {
+  console.log("Rating is: " + rating)
   }
 
   render() {
@@ -35,11 +32,9 @@ class Establishment extends Component {
         renderItem={this.renderItem}
       />
       <Avatar
-      width={width}
+      xlarge
       source={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"}}
       activeOpacity={0.7}
-      overlayContainerStyle={{flex: 0.4}}
-      imageProps={{resizeMode: 'cover'}}
       style={{
         display: 'flex',
         alignItems: 'center',
