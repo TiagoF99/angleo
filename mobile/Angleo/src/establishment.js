@@ -7,10 +7,10 @@ import {
   View
 } from 'react-native';
 
-class Home extends Component {
+class Establishment extends Component {
 
   state = {
-    data: {}
+    data: {},
   }
 
   componentDidMount() {
@@ -20,7 +20,7 @@ class Home extends Component {
   render() {
     return (
       <View>
-      <Text>Hello</Text>
+      <Text>{this.state.data.name}</Text>
       <FlatList
         data={this.state.data}
         renderItem={this.renderItem}
@@ -34,4 +34,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Establishment;
