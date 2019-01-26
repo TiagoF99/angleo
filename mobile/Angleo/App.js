@@ -6,9 +6,11 @@ import { createStackNavigator, createAppContainer, createBottomTabNavigator } fr
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Home from './src/home';
 import Establishment from './src/establishment';
+import Translation from './src/translation';
 
 const HomeStack = createStackNavigator({
   Home: Home,
+  Establishment: Establishment
 },
 {
     headerMode: 'none',
@@ -18,7 +20,7 @@ const HomeStack = createStackNavigator({
 });
 
 const TranslationStack = createStackNavigator({
-  Translation: Home
+  Translation: Translation
 },
 {
     headerMode: 'none',
