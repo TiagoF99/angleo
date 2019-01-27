@@ -8,7 +8,7 @@ import {
   View
 } from 'react-native';
 
-import { Rating, Avatar, Header } from 'react-native-elements';
+import { Button, Avatar, Header, } from 'react-native-elements';
 
 class Establishment extends Component {
   state = {
@@ -19,12 +19,20 @@ class Establishment extends Component {
     //    fetch()
   }
 
-  ratingCompleted(rating) {
-  console.log("Rating is: " + rating)
-  }
-
   render() {
-    const { rating } = this.props;
+    const styles = StyleSheet.create({
+      container: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 10,
+      },
+      buttonContainer: {
+        flex: 1,
+      }
+    });
+
     return (
       <View>
       <Header
@@ -49,17 +57,22 @@ class Establishment extends Component {
         renderItem={this.renderItem}
       />
 
-      <Rating
-      showRating
-      imageSize={20}
-      onFinishRating={this.ratingCompleted}
-      style={{ paddingVertical: 10,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-      />
+      <View style={styles.container}>
+        <View style={styles.buttonContainer}>
+          <Button title="Upvote"
+          backgroundColor= '#8B0000'
+          color='#fffcfc'
+          />
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button title="Downvote"
+           backgroundColor= '#070707'
+           color='#fffcfc'
+          />
+        </View>
       </View>
+
+    </View>
     )
   }
 
@@ -67,6 +80,7 @@ class Establishment extends Component {
 
   }
 }
+
 
 
 export default Establishment;
