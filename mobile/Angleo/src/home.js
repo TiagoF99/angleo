@@ -8,28 +8,29 @@ import {
 } from 'react-native';
 import { SearchBar, List, ListItem } from 'react-native-elements';
 
-const list = [
-  {
-    name: 'Nearby Place #1',
-    avatar_url: 'https://static.thenounproject.com/png/6564-200.png',
-    address: 'Address #1',
-    vote: -10
-  },
-  {
-    name: 'Nearby Place #2',
-    avatar_url: 'https://static.thenounproject.com/png/37358-200.png',
-    address: 'Address #2',
-    vote: 10
-  },]
-
 class Home extends Component {
 
   state = {
-    data: []
+    data:  [
+      {
+        name: 'Nearby Place #1',
+        avatar_url: 'https://static.thenounproject.com/png/6564-200.png',
+        address: 'Address #1',
+        vote: -10
+      },
+      {
+        name: 'Nearby Place #2',
+        avatar_url: 'https://static.thenounproject.com/png/37358-200.png',
+        address: 'Address #2',
+        vote: 10
+      },]
   }
 
   componentDidMount() {
-//    fetch()
+    fetch(http://angleo.tech/get/nearby/45.58389770/-73.6500000/1)
+    .then(data) {
+      this.setState({data:data})
+    }
   }
 
   checkVote(item) {
@@ -74,7 +75,7 @@ class Home extends Component {
 
         <List>
           {
-            list.map((item) => (
+            this.state.data.map((item) => (
               this.checkVote(item)
             ))
           }
@@ -101,7 +102,7 @@ class Home extends Component {
   }
 
   search(text) {
-
+    
   }
 }
 
