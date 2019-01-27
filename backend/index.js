@@ -1,6 +1,4 @@
-(function(){
-
-    const express = require("express");
+const express = require("express");
 const app = express();
 require('handlebars');
 // Database rest functions
@@ -63,45 +61,18 @@ const multer = require('multer');
 const bodyParser = require('body-parser');
 const vision = require('@google-cloud/vision');
 const client = new vision.ImageAnnotatorClient();
-const {Translate} = require('@google-cloud/translate');
 var upload = multer({ dest: './media/translate' })
-
-// Instantiates a client
-const translate = new Translate();
-const target = "fr";
+var https = require('https');
 
 app.post('/post/translate', upload.single("image"), function (req, res, next) {
     client.textDetection(req.file.path).then(results => {
- 	   var label = results[0].textAnnotations[0].description;
- 	   var labels = "";
- 	   var alpha = "abcdefghijklmnopqrstuvwxyzQAZWSXEDCRFVTGBYHNUJMKLOP";
- 	   for (var i = 0; i < label.length; i++) {
- 			if (alpha.search(label[i]) != -1  || label[i] === " ") {
-    			labels += label[i];
-    		}
-    	}
-    	translateRun(labels)
-    	.then(function(translatedText) {
-    		res.send(translatedText)
-    	})
+ 	   res.json(results[0].textAnnotations);
     })
     .catch(err => {
         console.error('ERROR:', err);
     });
 });
 
-async function translateRun(text) {
-	var results = await translate.translate(text, 'en')
-    const translation = results[0];
-  return results
-}
-
 app.listen(app.get('port'), function(){
     console.log( 'Server running on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.' );
 });
-
-
-
-
-
-})();// Express
