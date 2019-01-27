@@ -2,8 +2,8 @@
 
 
 	var data = [{
-	  x: ['Montreal', 'Quebec City', 'Another one'],
-	  y: [20, 14, 23],
+	  x: ['Montreal', 'Pointe-Aux-Trembles', 'Laval'],
+	  y: [1,2,3],
 	  type: 'bar'
 	}];
 
