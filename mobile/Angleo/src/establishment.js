@@ -17,19 +17,18 @@ class Establishment extends Component {
   state = {
     data: {},
     modalVisible: false,
-    item: {}
+    item: false
   }
 
-  constructor(props) {
-    super(props)
-    this.state.item = this.props.navigation.getparam("item")
-  }
 
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
 
-
+  constructor(props) {
+    super(props)
+    this.state.item = this.props.navigation.state.params.item
+  }
 
   updateVote(num) {
     if (num == 0) {
@@ -41,24 +40,25 @@ class Establishment extends Component {
   }
 
   componentDidMount() {
-    //    fetch
-    console.log(this.props.item);
+    this.setState(this.state)
   }
 
-  render() {
-    const styles = StyleSheet.create({
-      container: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: 10,
-      },
-      buttonContainer: {
-        flex: 1,
-      }
-    });
 
+  render() {
+
+        const styles = StyleSheet.create({
+          container: {
+            flex: 1,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingVertical: 10,
+          },
+          buttonContainer: {
+            flex: 1,
+          }
+        });
+    if (this.state.item) {
     return (
       <View>
       <Header
@@ -83,10 +83,10 @@ class Establishment extends Component {
           flexDirection: 'row',
           height: 20,
           padding: 20,}}>
-      <Text>Name: {item.name}</Text>
-      <Text>Address: {item.address}</Text>
-      <Text>Votes: {item.votes}</Text>
-      <Text>Cultural Info: {item.cultural}</Text>
+      <Text>Name: {this.state.item.name}</Text>
+      <Text>Address: {this.state.item.address}</Text>
+      <Text>Votes: {this.state.item.votes}</Text>
+      <Text>Cultural Info: {this.state.item.cultural}</Text>
       </View>
 
       <View>
@@ -116,9 +116,9 @@ class Establishment extends Component {
         }}>
         <List>
         {
-          item.translations.map((word) => (
+          this.state.item.translations.english.map((english, i) => (
             <ListItem
-            title={"English: "+ word.english + " = French: " + word.french}
+            title={"English: "+ english + " = French: " + this.state.item.translations.french[i]}
             />
           ))
         }
@@ -141,6 +141,9 @@ class Establishment extends Component {
       />
     </View>
     )
+  } else {
+    return (<View></View>)
+  }
   }
   renderItem(item) {
 
