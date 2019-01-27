@@ -1,5 +1,4 @@
 const express = require("express");
-
 var multer  = require('multer')
 var upload = multer({ dest: 'uploads/' })
 
@@ -19,6 +18,8 @@ const translate = new Translate({
   projectId: projectId,
 });
 
+var bodyParser = require('body-parser');
+var async = require('async');
 const app = express();
 
 app.set('port', process.env.PORT || 8000);
@@ -27,8 +28,6 @@ app.get('/', function(req, res) {
     res.type('html');
     res.send("<h1>Nothing</h1>");
 });
-
-
 
 app.post('/profile', upload.single('avatar'), function (req, res, next) {
 	// Performs label detection on the image file
