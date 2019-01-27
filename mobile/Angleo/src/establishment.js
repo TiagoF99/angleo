@@ -13,11 +13,6 @@ import {
 
 import { Avatar, Header,  List, ListItem } from 'react-native-elements';
 
-const data = [{
-      english: 's',
-      french: 'No'
-    }]
-
 class Establishment extends Component {
   state = {
     data: {},
@@ -29,11 +24,11 @@ class Establishment extends Component {
   }
 
   updateVote() {
-
   }
 
   componentDidMount() {
-    //    fetch()
+    //    fetch
+    console.log(this.props.item);
   }
 
   render() {
@@ -54,12 +49,12 @@ class Establishment extends Component {
       <View>
       <Header
       backgroundColor= '#001F97'
-      centerComponent={{ text: 'Name of the place', style: { color: '#fff' } }}
+      centerComponent={{ text: 'Detail Info', style: { color: '#fff' } }}
       />
       <View>
       <Avatar
-      width={425}
-      source={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"}}
+      width={200}
+      source={{uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Flag_of_Quebec_%281-2%29.svg/2000px-Flag_of_Quebec_%281-2%29.svg.png"}}
       activeOpacity={0.7}
       style={{ paddingVertical: 10,
         display: 'flex',
@@ -69,10 +64,12 @@ class Establishment extends Component {
       />
       </View>
 
-      <FlatList
-        data={this.state.data}
-        renderItem={this.renderItem}
-      />
+      <View>
+      <Text>Name: {this.props.item.name}</Text>
+      <Text>Address: {this.props.item.address}</Text>
+      <Text>Votes: {this.props.item.votes}</Text>
+      <Text>Cultural Info: {this.props.item.cultural}</Text>
+      </View>
 
       <View>
         <View >
@@ -101,9 +98,9 @@ class Establishment extends Component {
         }}>
         <List>
         {
-          data.map((item) => (
+          this.props.item.translations.map((word) => (
             <ListItem
-            title={"English: "+ item.english + " = French: " + item.french}
+            title={"English: "+ word.english + " = French: " + word.french}
             />
           ))
         }
