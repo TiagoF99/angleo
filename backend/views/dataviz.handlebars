@@ -47,7 +47,7 @@
 
   <body>
 
-    <div class="shadow-lg p-3 mb-5 bg-white rounded" id='title'>Data Vizualization {{montreal_count}}</div>
+    <div class="shadow-lg p-3 mb-5 bg-white rounded" id='title'>Data Vizualization</div>
 
     <div class='container'>
       <div class='row'>
@@ -85,7 +85,7 @@
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 13,
-          center: {lat: 37.775, lng: -122.434},
+          center: {lat: 45.5017, lng: -73.5673},
           mapTypeId: 'satellite'
         });
 
@@ -130,12 +130,24 @@
       // Heatmap data: 500 Points
       function getPoints() {
         return [
-          new google.maps.LatLng(37.756335, -122.403719),
-          new google.maps.LatLng(37.755503, -122.403406),
-          new google.maps.LatLng(37.754665, -122.403242),
-          new google.maps.LatLng(37.753837, -122.403172),
-          new google.maps.LatLng(37.752986, -122.403112),
-          new google.maps.LatLng(37.751266, -122.403355)
+          new google.maps.LatLng(45.5011, -73.5676),
+          new google.maps.LatLng(45.5013, -73.5673),
+          new google.maps.LatLng(45.5015, -73.5663),
+          new google.maps.LatLng(45.5017, -73.5659),
+          new google.maps.LatLng(45.5019, -73.5689),
+          new google.maps.LatLng(45.5022, -73.5623),
+          new google.maps.LatLng(45.5024, -73.5532),
+          new google.maps.LatLng(45.5027, -73.5673),
+          new google.maps.LatLng(45.5027, -73.5974),
+          new google.maps.LatLng(45.5145, -73.5123),
+          new google.maps.LatLng(45.5132, -73.5423),
+          new google.maps.LatLng(45.5146, -73.5953),
+          new google.maps.LatLng(45.5090, -73.5325),
+          new google.maps.LatLng(45.5245, -73.6123),
+          new google.maps.LatLng(45.5468, -73.5231),
+          new google.maps.LatLng(45.5182, -73.5634),
+          new google.maps.LatLng(45.5228, -73.5537),
+          new google.maps.LatLng(45.5393, -73.5537)
         ];
       }
     </script>

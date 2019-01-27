@@ -1,12 +1,7 @@
-(function(){
 
-    const express = require("express");
+const express = require("express");
 const app = express();
-<<<<<<< HEAD
 require('handlebars');
-=======
-
->>>>>>> 9bb5713e99d6c4452fec85421aedd980a7be4e05
 // Database rest functions
 var mongo = require('./rest.js');
 // Database dataviz functions
@@ -33,12 +28,8 @@ app.get('/', function(req, res) {
     });
 });
 
-<<<<<<< HEAD
 
 // GET: List locations nearby
-=======
-// GET: List locations near a coordinates within a certain km range
->>>>>>> 9bb5713e99d6c4452fec85421aedd980a7be4e05
 app.get('/get/nearby/:latitude/:longitude/:km', function(req, res) {
     res.type("json");
     mongo.nearby(
@@ -49,30 +40,25 @@ app.get('/get/nearby/:latitude/:longitude/:km', function(req, res) {
     );
 });
 
-// GET: Searches locations by query
-app.post('/get/search/query/name/:name', function(req, res) {
+// POST: Searches locations by query
+app.post('/post/search/query/name', function(req, res) {
     res.type("json");
-    mongo.nameSearch(
-        req.params.name,
+    mongo.search(
+        req.param.name,
         res
     );
 });
 
-// GET: Returns the search of a specific id
-app.get('/get/search/exact/id/:id', function(req, res) {
-    res.type("json");
-    mongo.idFind(
-        req.params.id,
-        res
-    );
+/*
+// Returns the search of a specific id
+app.get('/rest/search/exact/id', function(req, res) {
+    mongo.nearby(parseFloat(req.params.latitude), parseFloat(req.params.longitude), res);
 });
+*/
 
 app.listen(app.get('port'), function(){
     console.log( 'Server running on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.' );
 });
 
 
-
-
-
-})();// Express
+// Express
