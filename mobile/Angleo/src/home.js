@@ -14,22 +14,35 @@ class Home extends Component {
   state = {
     data: [
     ],
-    search: []
+    search: [],
+    location:[],
+    searching: false
   }
 
   componentDidMount() {
-    fetch('http://angleo.tech/get/nearby/45.58389770/-73.6500000/10')
+    navigator.geolocation.setRNConfiguration({});
+    navigator.geolocation.getCurrentPosition(this.updateLocation.bind(this))
+    navigator.geolocation.watchPosition(this.updateLocation.bind(this))
+  }
+
+  nearby() {
+    fetch('http://angleo.tech/get/nearby/'+this.state.location[0]+'/'+this.state.location[1]+'/1')
     .then((response) => response.json())
     .then((responseJson) => {
       console.log(responseJson[0]._id)
-      this.setState({
-        data:responseJson,
-        search:this.state.search
-      })
+      this.state.data = responseJson
+      this.setState(this.state)
     })
     .catch((error) => {
       console.error(error);
     });
+  }
+
+  updateLocation(position) {
+    this.state.location = [position.coords.latitude, position.coords.longitude]
+    if (!this.state.searching) {
+      this.nearby.bind(this)()
+    }
   }
 
   renderItem(item) {
@@ -62,8 +75,11 @@ class Home extends Component {
           lightTheme
           round
           noIcon
-          onChangeText={this.search}
-          onClearText={this.search}
+          onChangeText={this.search.bind(this)}
+          onClearText={() => {
+            this.state.searching = false
+            nearby.bind(this)()
+          }}
           placeholder='Explore Quebec!'
           placeholderTextColor='#112Fa7'
           containerStyle={{
@@ -90,17 +106,22 @@ class Home extends Component {
   }
 
   search(text) {
-    fetch('http://angleo.tech/get/search/' + text)
-    .then((response) => response.json())
-    .then((responseJson) => {
-      this.setState({
-        data: this.state.data,
-        search: responseJson
+    if (text!='') {
+      console.log(text)
+      this.state.searching = true
+      fetch('http://angleo.tech/get/search/query/name/' + text)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson)
+        this.setState({
+          data: this.state.data,
+          search: responseJson
+        })
       })
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+      .catch((error) => {
+        console.error(error);
+      });
+    }
   }
 }
 
