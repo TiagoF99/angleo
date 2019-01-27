@@ -113,10 +113,8 @@ class Home extends Component {
       .then((response) => response.json())
       .then((responseJson) => {
         console.log(responseJson)
-        this.setState({
-          data: this.state.data,
-          search: responseJson
-        })
+        this.setState({data: responseJson})
+        this.setState(this.state)
       })
       .catch((error) => {
         console.error(error);
