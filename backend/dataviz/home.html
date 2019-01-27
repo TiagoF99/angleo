@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script type="text/javascript" src='plot.js'></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script type="text/javascript">
+      Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/wind_speed_laurel_nebraska.csv', function(rows){
+                    var trace = {
+                      type: 'scatter',                    // set the chart type
+                      mode: 'lines',                      // connect points with lines
+                      x: rows.map(function(row){          // set the x-data
+                        return row['Time'];
+                      }),
+                      y: rows.map(function(row){          // set the x-data
+                        return row['10 Min Sampled Avg'];
+                      }),
+                      line: {                             // set the width of the line.
+                        width: 1
+                      },
+                      error_y: {
+                        array: rows.map(function(row){    // set the height of the error bars
+                          return row['10 Min Std Dev'];
+                        }),
+                        thickness: 0.5,                   // set the thickness of the error bars
+                        width: 0
+                      }
+                    };
+
+                    var layout = {
+                      yaxis: {title: "Wind Speed"},       // set the y axis title
+                      xaxis: {
+                        showgrid: false,                  // remove the x-axis grid lines
+                        tickformat: "%B, %Y"              // customize the date format to "month, day"
+                      },
+                      margin: {                           // update the left, bottom, right, top margin
+                        l: 40, b: 10, r: 10, t: 20
+                      }
+                    };
+
+                    Plotly.plot(document.getElementById('wind-speed'), [trace], layout, {showLink: false});
+                });
+    </script>
+
+
+    <style type="text/css">
+      #title {
+        text-align: center;
+        font-size: 300%;
+        font-weight: bold;
+      }
+      
+
+
+    </style>
+
+    <title>Data Vizualization</title>
+  </head>
+  <body>
+    <h1 id='title'>Data Vizualization</h1>
+
+    <div class='container-fluid'>
+      <div class='row'>
+        <div id='wind-speed' class='col-12-xs col-md-4'>
+          
+        </div>
+        <div class='col-12-xs col-md-4'>
+          
+        </div>
+        <div class='col-12-xs col-md-4'>
+          
+        </div>
+        <div class='col-12-xs col-md-4'>
+          
+        </div>
+        <div class='col-12-xs col-md-4'>
+          
+        </div>
+        <div class='col-12-xs col-md-4'>
+          
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </body>
+</html>
