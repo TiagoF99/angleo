@@ -17,12 +17,19 @@ class Establishment extends Component {
   state = {
     data: {},
     modalVisible: false,
+    item: {}
   }
 
-  item = this.props.navigation.getparam("item");
+  constructor(props) {
+    super(props)
+    this.state.item = this.props.navigation.getparam("item")
+  }
+
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
+
+
 
   updateVote(num) {
     if (num == 0) {
