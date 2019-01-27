@@ -1,5 +1,7 @@
 const express = require("express");
 var multer = require('multer')
+var bodyParser = require('body-parser');
+var async = require('async');
 
 var upload = multer({ dest: './uploads' })
 
@@ -19,8 +21,8 @@ const translate = new Translate({
   projectId: projectId,
 });
 
-var bodyParser = require('body-parser');
-var async = require('async');
+var mongo = require('./database.js')
+
 const app = express();
 
 app.set('port', process.env.PORT || 8000);
@@ -51,19 +53,18 @@ app.post('/profile', upload.single('avatar'), function (req, res, next) {
 async function translateRun(text) {
 	var results = await translate.translate(text, 'en')
     const translation = results[0];
-    console.log(`Text: ${text}`);
-    console.log(`Translation: ${translation}`);
   return results
 }
 
-router.get('/search/:latitude/:longitude', function(req, res) {
+app.get('/nearby/:latitude/:longitude', function(req, res) {
+  mongo.nearby(req.params.latitude, req.params.longitude, res);
+});
 
-	    res.type("json");
-	    let test = search(req.params.latitude, req.params.longitude);
-	    res.status(test[0]);
-	    res.send(test[1]);
+app.post('/search/name', function(req, res) {
+  mongo.search(req.body.name, res)
+})
 
-	});
+
 
 app.listen(app.get('port'), function(){
     console.log( 'Server running on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.' );
