@@ -18,16 +18,15 @@ app.use(express.static('public'));
 
 // Data visualization for index
 app.get('/', function(req, res) {
-    res.render("dataviz", {
+    res.send({
         montreal_count: dataviz.count(res),
         pointe_count: dataviz.count2(res),
-        laval_count: dataviz.count3(res), 
-        
+        laval_count: dataviz.count3(res),
+
         lan_montreal_0: dataviz.language('Montréal', 0, res)
 
     });
 });
-
 
 // GET: List locations nearby
 app.get('/get/nearby/:latitude/:longitude/:km', function(req, res) {
