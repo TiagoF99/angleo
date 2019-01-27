@@ -1,6 +1,7 @@
 const express = require("express");
-var multer  = require('multer')
-var upload = multer({ dest: 'uploads/' })
+var multer = require('multer')
+
+var upload = multer({ dest: './uploads' })
 
 // Imports the Google Cloud client library
 const vision = require('@google-cloud/vision');
