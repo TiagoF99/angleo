@@ -56,6 +56,14 @@ async function translateRun(text) {
   return results
 }
 
+router.get('/search/:latitude/:longitude', function(req, res) {
+
+	    res.type("json");
+	    let test = search(req.params.latitude, req.params.longitude);
+	    res.status(test[0]);
+	    res.send(test[1]);
+
+	});
 
 app.listen(app.get('port'), function(){
     console.log( 'Server running on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.' );
