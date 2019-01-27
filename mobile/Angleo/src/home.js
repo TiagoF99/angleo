@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Text,
   FlatList,
+  ScrollView,
   View
 } from 'react-native';
 import { SearchBar, List, ListItem } from 'react-native-elements';
@@ -11,46 +12,48 @@ import { SearchBar, List, ListItem } from 'react-native-elements';
 class Home extends Component {
 
   state = {
-    data:  [
-      {
-        name: 'Nearby Place #1',
-        avatar_url: 'https://static.thenounproject.com/png/6564-200.png',
-        address: 'Address #1',
-        vote: -10
-      },
-      {
-        name: 'Nearby Place #2',
-        avatar_url: 'https://static.thenounproject.com/png/37358-200.png',
-        address: 'Address #2',
-        vote: 10
-      },]
+    data: [
+    ],
+    search: []
   }
 
   componentDidMount() {
-    fetch(http://angleo.tech/get/nearby/45.58389770/-73.6500000/1)
-    .then(data) {
-      this.setState({data:data})
-    }
+    fetch('http://angleo.tech/get/nearby/45.58389770/-73.6500000/10')
+    .then((response) => response.json())
+    .then((responseJson) => {
+      console.log(responseJson[0]._id)
+      this.setState({
+        data:responseJson,
+        search:this.state.search
+      })
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   }
 
-  checkVote(item) {
-          if (item.vote >= 0) {
-              return <ListItem
-                badge={{ value: item.vote, textStyle: { color: 'black' }, containerStyle:{backgroundColor: '#5ae024'} }}
-                key={item.name}
-                title={item.name}
-                subtitle= {item.subtitle}
-                avatar={{uri:item.avatar_url}}
-              />
-          } else {
-              return <ListItem
-                badge={{ value: item.vote, textStyle: { color: 'black' }, containerStyle:{backgroundColor: '#d60202'} }}
-                key={item.name}
-                title={item.name}
-                subtitle= {item.subtitle}
-                avatar={{uri:item.avatar_url}}
-              />
-            }
+  renderItem(item) {
+    var color = ''
+    if (item.votes >= 0) {
+      color = '#5ae024'
+    } else {
+      color = '#d60202'
+    }
+    return (
+      <ListItem
+        badge={{ value: item.votes, textStyle: { color: '#000' }, containerStyle:{backgroundColor: color} }}
+        key={item._id}
+        title={item.name}
+        subtitle= {item.subtitle}
+        avatar={{uri:item.avatar_url}}
+        onPress={this.enterPlace}
+      />
+    )
+  }
+
+  enterPlace(item) {
+    console.log("hi")
+    this.props.navigation.navigate('establishment', item)
   }
 
   render() {
@@ -72,37 +75,33 @@ class Home extends Component {
             color:'#001F97'
           }}
         />
-
-        <List>
-          {
-            this.state.data.map((item) => (
-              this.checkVote(item)
-            ))
-          }
-        </List>
-
-        <FlatList
-          contentContainerStyle={{
+        <ScrollView
+          style={{
             flexGrow: 1,
             backgroundColor:'#eee',
             borderColor:'#eee'
           }}
-          data={this.state.data}
-          renderItem={this.renderItem}
-        />
-      </View>
-    )
-  }
-
-  renderItem(item) {
-    return (
-      <View>
+        >
+          {
+            this.state.data.slice(0,20).map(this.renderItem.bind(this))
+          }
+        </ScrollView>
       </View>
     )
   }
 
   search(text) {
-    
+    fetch('http://angleo.tech/get/search/' + text)
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({
+        data: this.state.data,
+        search: responseJson
+      })
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   }
 }
 
