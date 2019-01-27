@@ -1,7 +1,8 @@
-// Express
-const express = require("express");
-const app = express();
+(function(){
 
+    const express = require("express");
+const app = express();
+require('handlebars');
 // Database rest functions
 var mongo = require('./rest.js');
 // Database dataviz functions
@@ -18,10 +19,17 @@ app.use(express.static('public'));
 
 // Data visualization for index
 app.get('/', function(req, res) {
-    res.render("dataviz", {});
+    res.send({
+        montreal_count: dataviz.count(res),
+        pointe_count: dataviz.count2(res),
+        laval_count: dataviz.count3(res),
+
+        lan_montreal_0: dataviz.language('Montréal', 0, res)
+
+    });
 });
 
-// GET: List locations near a coordinates within a certain km range
+// GET: List locations nearby
 app.get('/get/nearby/:latitude/:longitude/:km', function(req, res) {
     res.type("json");
     mongo.nearby(
@@ -91,3 +99,9 @@ async function translateRun(text) {
 app.listen(app.get('port'), function(){
     console.log( 'Server running on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.' );
 });
+
+
+
+
+
+})();// Express

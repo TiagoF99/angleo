@@ -13,27 +13,29 @@ import {
 
 import { Avatar, Header,  List, ListItem } from 'react-native-elements';
 
-const data = [{
-      english: 's',
-      french: 'No'
-    }]
-
 class Establishment extends Component {
   state = {
     data: {},
     modalVisible: false,
   }
 
+  item = this.props.navigation.getparam("item");
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
 
-  updateVote() {
-
+  updateVote(num) {
+    if (num == 0) {
+      item.votes = item.votes - 1;
+    }
+    else {
+      item.votes = item.votes + 1;
+    }
   }
 
   componentDidMount() {
-    //    fetch()
+    //    fetch
+    console.log(this.props.item);
   }
 
   render() {
@@ -54,12 +56,13 @@ class Establishment extends Component {
       <View>
       <Header
       backgroundColor= '#001F97'
-      centerComponent={{ text: 'Name of the place', style: { color: '#fff' } }}
+      centerComponent={{ text: 'Detail Info', style: { color: '#fff' } }}
       />
-      <View>
+      <View style={{
+          flexDirection: 'row'}}>
       <Avatar
-      width={425}
-      source={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"}}
+      width={200}
+      source={{uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Flag_of_Quebec_%281-2%29.svg/2000px-Flag_of_Quebec_%281-2%29.svg.png"}}
       activeOpacity={0.7}
       style={{ paddingVertical: 10,
         display: 'flex',
@@ -69,15 +72,20 @@ class Establishment extends Component {
       />
       </View>
 
-      <FlatList
-        data={this.state.data}
-        renderItem={this.renderItem}
-      />
+      <View style={{
+          flexDirection: 'row',
+          height: 20,
+          padding: 20,}}>
+      <Text>Name: {item.name}</Text>
+      <Text>Address: {item.address}</Text>
+      <Text>Votes: {item.votes}</Text>
+      <Text>Cultural Info: {item.cultural}</Text>
+      </View>
 
       <View>
-        <View >
+        <View>
           <Button onPress={() => {
-            this.updateVote();
+            this.updateVote(1);
           }}
            title="Upvote"
            color="blue"
@@ -85,7 +93,7 @@ class Establishment extends Component {
         </View>
         <View>
           <Button onPress={() => {
-            this.updateVote();
+            this.updateVote(0);
           }}
           title="Downvote"
           color="black"
@@ -101,9 +109,9 @@ class Establishment extends Component {
         }}>
         <List>
         {
-          data.map((item) => (
+          item.translations.map((word) => (
             <ListItem
-            title={"English: "+ item.english + " = French: " + item.french}
+            title={"English: "+ word.english + " = French: " + word.french}
             />
           ))
         }

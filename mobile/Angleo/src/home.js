@@ -4,52 +4,68 @@ import {
   StyleSheet,
   Text,
   FlatList,
+  ScrollView,
   View
 } from 'react-native';
 import { SearchBar, List, ListItem } from 'react-native-elements';
 
-const list = [
-  {
-    name: 'Nearby Place #1',
-    avatar_url: 'https://static.thenounproject.com/png/6564-200.png',
-    address: 'Address #1',
-    vote: -10
-  },
-  {
-    name: 'Nearby Place #2',
-    avatar_url: 'https://static.thenounproject.com/png/37358-200.png',
-    address: 'Address #2',
-    vote: 10
-  },]
-
 class Home extends Component {
 
   state = {
-    data: []
+    data: [
+    ],
+    search: [],
+    location:[],
+    searching: false
   }
 
   componentDidMount() {
-//    fetch()
+    navigator.geolocation.setRNConfiguration({});
+    navigator.geolocation.getCurrentPosition(this.updateLocation.bind(this))
+    navigator.geolocation.watchPosition(this.updateLocation.bind(this))
   }
 
-  checkVote(item) {
-          if (item.vote >= 0) {
-              return <ListItem
-                badge={{ value: item.vote, textStyle: { color: 'black' }, containerStyle:{backgroundColor: '#5ae024'} }}
-                key={item.name}
-                title={item.name}
-                subtitle= {item.subtitle}
-                avatar={{uri:item.avatar_url}}
-              />
-          } else {
-              return <ListItem
-                badge={{ value: item.vote, textStyle: { color: 'black' }, containerStyle:{backgroundColor: '#d60202'} }}
-                key={item.name}
-                title={item.name}
-                subtitle= {item.subtitle}
-                avatar={{uri:item.avatar_url}}
-              />
-            }
+  nearby() {
+    fetch('http://angleo.tech/get/nearby/'+this.state.location[0]+'/'+this.state.location[1]+'/1')
+    .then((response) => response.json())
+    .then((responseJson) => {
+      console.log(responseJson[0]._id)
+      this.state.data = responseJson
+      this.setState(this.state)
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+
+  updateLocation(position) {
+    this.state.location = [position.coords.latitude, position.coords.longitude]
+    if (!this.state.searching) {
+      this.nearby.bind(this)()
+    }
+  }
+
+  renderItem(item) {
+    var color = ''
+    if (item.votes >= 0) {
+      color = '#5ae024'
+    } else {
+      color = '#d60202'
+    }
+    return (
+      <ListItem
+        badge={{ value: item.votes, textStyle: { color: '#000' }, containerStyle:{backgroundColor: color} }}
+        key={item._id}
+        title={item.name}
+        subtitle= {item.subtitle}
+        avatar={{uri:item.avatar_url}}
+        onPress={this.enterPlace.bind(this)}
+      />
+    )
+  }
+
+  enterPlace(item) {
+    this.props.navigation.navigate('Establishment', {item:item})
   }
 
   render() {
@@ -59,8 +75,11 @@ class Home extends Component {
           lightTheme
           round
           noIcon
-          onChangeText={this.search}
-          onClearText={this.search}
+          onChangeText={this.search.bind(this)}
+          onClearText={() => {
+            this.state.searching = false
+            nearby.bind(this)()
+          }}
           placeholder='Explore Quebec!'
           placeholderTextColor='#112Fa7'
           containerStyle={{
@@ -71,37 +90,36 @@ class Home extends Component {
             color:'#001F97'
           }}
         />
-
-        <List>
-          {
-            list.map((item) => (
-              this.checkVote(item)
-            ))
-          }
-        </List>
-
-        <FlatList
-          contentContainerStyle={{
+        <ScrollView
+          style={{
             flexGrow: 1,
             backgroundColor:'#eee',
             borderColor:'#eee'
           }}
-          data={this.state.data}
-          renderItem={this.renderItem}
-        />
-      </View>
-    )
-  }
-
-  renderItem(item) {
-    return (
-      <View>
+        >
+          {
+            this.state.data.slice(0,20).map(this.renderItem.bind(this))
+          }
+        </ScrollView>
       </View>
     )
   }
 
   search(text) {
-
+    if (text!='') {
+      console.log(text)
+      this.state.searching = true
+      fetch('http://angleo.tech/get/search/query/name/' + text)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson)
+        this.setState({data: responseJson})
+        this.setState(this.state)
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    }
   }
 }
 
