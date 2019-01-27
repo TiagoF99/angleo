@@ -19,11 +19,18 @@ class Establishment extends Component {
     modalVisible: false,
   }
 
+  item = this.props.navigation.getparam("item");
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
 
-  updateVote() {
+  updateVote(num) {
+    if (num == 0) {
+      item.votes = item.votes - 1;
+    }
+    else {
+      item.votes = item.votes + 1;
+    }
   }
 
   componentDidMount() {
@@ -51,7 +58,8 @@ class Establishment extends Component {
       backgroundColor= '#001F97'
       centerComponent={{ text: 'Detail Info', style: { color: '#fff' } }}
       />
-      <View>
+      <View style={{
+          flexDirection: 'row'}}>
       <Avatar
       width={200}
       source={{uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Flag_of_Quebec_%281-2%29.svg/2000px-Flag_of_Quebec_%281-2%29.svg.png"}}
@@ -64,17 +72,20 @@ class Establishment extends Component {
       />
       </View>
 
-      <View>
-      <Text>Name: {this.props.item.name}</Text>
-      <Text>Address: {this.props.item.address}</Text>
-      <Text>Votes: {this.props.item.votes}</Text>
-      <Text>Cultural Info: {this.props.item.cultural}</Text>
+      <View style={{
+          flexDirection: 'row',
+          height: 20,
+          padding: 20,}}>
+      <Text>Name: {item.name}</Text>
+      <Text>Address: {item.address}</Text>
+      <Text>Votes: {item.votes}</Text>
+      <Text>Cultural Info: {item.cultural}</Text>
       </View>
 
       <View>
-        <View >
+        <View>
           <Button onPress={() => {
-            this.updateVote();
+            this.updateVote(1);
           }}
            title="Upvote"
            color="blue"
@@ -82,7 +93,7 @@ class Establishment extends Component {
         </View>
         <View>
           <Button onPress={() => {
-            this.updateVote();
+            this.updateVote(0);
           }}
           title="Downvote"
           color="black"
@@ -98,7 +109,7 @@ class Establishment extends Component {
         }}>
         <List>
         {
-          this.props.item.translations.map((word) => (
+          item.translations.map((word) => (
             <ListItem
             title={"English: "+ word.english + " = French: " + word.french}
             />
