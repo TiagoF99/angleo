@@ -13,18 +13,19 @@ function nearby(lat, long, km, res) {
         if (err) throw err;
         var dbo = db.db(database);
         // The angular radius of the query circle in radians
-        var radquery = km/earthrad;
+        var latchange = km/111;
+        var longChange = km/85;
         // Calculations from http://janmatuschek.de/LatitudeLongitudeBoundingCoordinates
         // For next time, use https://docs.mongodb.com/manual/geospatial-queries/
         var query = {
             $and: [{
                 latitude:{
-                    $gte: rad_to_degrees(degrees_to_rad(lat) - radquery), 
-                    $lte: rad_to_degrees(degrees_to_rad(lat) + radquery)
+                    $gte: lat - latchange,
+                    $lte: lat + latchange
                 },
                 longitude:{
-                    $gte: rad_to_degrees(degrees_to_rad(long) + Math.asin(Math.sin(radquery)/Math.cos(lat))),
-                    $lte: rad_to_degrees(degrees_to_rad(long) - Math.asin(Math.sin(radquery)/Math.cos(lat)))
+                    $gte: long - longChange,
+                    $lte: long + longChange
                 },
             }],
         };
@@ -60,16 +61,6 @@ function idFind(qid, res) {
             db.close();
         });
     });
-}
-
-// HELPERS
-
-let degrees_to_rad = (degrees) => {
-    return degrees * (Math.PI/180);
-}
-
-let rad_to_degrees = (rad) => {
-    return rad * (180/Math.PI);
 }
 
 module.exports = {
