@@ -1,7 +1,9 @@
 const express = require("express");
+var multer = require('multer')
+var bodyParser = require('body-parser');
+var async = require('async');
 
-var multer  = require('multer')
-var upload = multer({ dest: 'uploads/' })
+var upload = multer({ dest: './uploads' })
 
 // Imports the Google Cloud client library
 const vision = require('@google-cloud/vision');
@@ -19,6 +21,8 @@ const translate = new Translate({
   projectId: projectId,
 });
 
+var mongo = require('./database.js')
+
 const app = express();
 
 app.set('port', process.env.PORT || 8000);
@@ -27,8 +31,6 @@ app.get('/', function(req, res) {
     res.type('html');
     res.send("<h1>Nothing</h1>");
 });
-
-
 
 app.post('/profile', upload.single('avatar'), function (req, res, next) {
 	// Performs label detection on the image file
@@ -51,10 +53,17 @@ app.post('/profile', upload.single('avatar'), function (req, res, next) {
 async function translateRun(text) {
 	var results = await translate.translate(text, 'en')
     const translation = results[0];
-    console.log(`Text: ${text}`);
-    console.log(`Translation: ${translation}`);
   return results
 }
+
+app.get('/nearby/:latitude/:longitude', function(req, res) {
+  mongo.nearby(req.params.latitude, req.params.longitude, res);
+});
+
+app.post('/search/name', function(req, res) {
+  mongo.search(req.body.name, res)
+})
+
 
 
 app.listen(app.get('port'), function(){
