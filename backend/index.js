@@ -19,7 +19,7 @@ app.use(express.static('public'));
 
 // Data visualization for index
 app.get('/', function(req, res) {
-    res.render("dataviz", {
+    res.send({
         montreal_count: dataviz.count(res),
         pointe_count: dataviz.count2(res),
         laval_count: dataviz.count3(res),
