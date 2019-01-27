@@ -46,14 +46,13 @@ class Home extends Component {
         title={item.name}
         subtitle= {item.subtitle}
         avatar={{uri:item.avatar_url}}
-        onPress={this.enterPlace}
+        onPress={this.enterPlace.bind(this)}
       />
     )
   }
 
   enterPlace(item) {
-    console.log("hi")
-    this.props.navigation.navigate('establishment', item)
+    this.props.navigation.navigate('Establishment', {item:item})
   }
 
   render() {
