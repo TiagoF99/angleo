@@ -1,12 +1,24 @@
 // Express
 const express = require("express");
 const app = express();
-
-// Database functions
-var mongo = require('./database.js');
+// Database rest functions
+var mongo = require('./rest.js');
+// Database dataviz functions
+var dataviz = require('./dataviz.js');
+var exphbs = require('express-handlebars');
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
 
 // Port
 app.set('port', process.env.PORT || 8000);
+
+// Public files
+app.use(express.static('public'));
+
+// Data visualization for index
+app.get('/', function(req, res) {
+    res.render("dataviz", {});
+});
 
 // GET: List locations nearby
 app.get('/get/nearby/:latitude/:longitude/:km', function(req, res) {

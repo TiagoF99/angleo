@@ -40,11 +40,7 @@ function search(qname, res) {
         if (err) throw err;
         var dbo = db.db(database);
         var query = {
-            name: {
-                '$regex' : /qname/,
-                '$options' : '$i'
-            }
-        };
+            name: {'$regex' : qname, '$options' : 'i'}};
         dbo.collection(collection).find(query).toArray(function(err, result) {
             if (err) throw err;
             res.json(result);
