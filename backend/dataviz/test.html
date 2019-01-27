@@ -18,11 +18,7 @@
         text-align: center;
         font-size: 300%;
         font-weight: bold;
-      }
-      #map {
-        height: 100%;
-        width: 75%;
-        margin: auto;
+        margin: 40px 5% 0px 5%;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -30,50 +26,47 @@
         margin: 0;
         padding: 0;
       }
-      #floating-panel {
-        position: absolute;
-        left: 25%;
-        z-index: 5;
-        background-color: #fff;
-        padding: 5px;
-        border: 1px solid #999;
-        text-align: center;
-        font-family: 'Roboto','sans-serif';
-        line-height: 30px;
-        padding-left: 10px;
+      .row > div {
+        padding: 0;
       }
-      #floating-panel {
-        background-color: #fff;
-        border: 1px solid #999;
-        left: 25%;
-        padding: 5px;
-        position: absolute;
-        z-index: 5;
+      .row {
+        margin: 0;
+      }
+      #splitbar {
+        margin-bottom: 40px;
+        height: 50%;
+      }
+      #map div {
+        position: relative;
+      }
+      #map {
+        height: 418px;
       }
     </style>
   </head>
 
   <body>
 
-    <h1 id='title'>Data Vizualization</h1>
+    <div class="shadow-lg p-3 mb-5 bg-white rounded" id='title'>Data Vizualization</div>
 
-    <div class='container-fluid'>
+    <div class='container'>
       <div class='row'>
         <div id='myDiv'class='col-12-xs col-md-6'>
           
         </div>
-
+        <div id='bar2' class='col-12-xs col-md-6'></div>
+        
         <div id='splitbar' class='col-12-xs col-md-6'>
           
         </div>
-        <div class='col-12-xs col-md-6'>
-         
-        </div>
-        <div class='col-12-xs col-md-6'>
-          
-        </div>
-        <div class='col-12-xs col-md-6'>
-          
+        <div id='heat' class='col-12-xs col-md-6'>
+          <div id="floating-panel">
+            <button onclick="toggleHeatmap()">Toggle Heatmap</button>
+            <button onclick="changeGradient()">Change gradient</button>
+            <button onclick="changeRadius()">Change radius</button>
+            <button onclick="changeOpacity()">Change opacity</button>
+          </div>
+          <div id="map"></div>
         </div>
       </div>
     </div>
@@ -84,13 +77,7 @@
 
 
 
-    <div id="floating-panel">
-      <button onclick="toggleHeatmap()">Toggle Heatmap</button>
-      <button onclick="changeGradient()">Change gradient</button>
-      <button onclick="changeRadius()">Change radius</button>
-      <button onclick="changeOpacity()">Change opacity</button>
-    </div>
-    <div id="map"></div>
+    
 
 
 
@@ -162,5 +149,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <script type="text/javascript" src='bargraph.js'></script>
     <script type="text/javascript" src='splitbar.js'></script>
+    <script type="text/javascript" src='dotplot.js'></script>
   </body>
 </html>
