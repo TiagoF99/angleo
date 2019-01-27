@@ -21,7 +21,7 @@ app.get('/', function(req, res) {
     res.render("dataviz", {});
 });
 
-// GET: List locations nearby
+// GET: List locations near a coordinates within a certain km range
 app.get('/get/nearby/:latitude/:longitude/:km', function(req, res) {
     res.type("json");
     mongo.nearby(
@@ -41,7 +41,7 @@ app.post('/get/search/query/name/:name', function(req, res) {
     );
 });
 
-// Returns the search of a specific id
+// GET: Returns the search of a specific id
 app.get('/get/search/exact/id/:id', function(req, res) {
     res.type("json");
     mongo.idFind(
