@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-  Platform, StyleSheet, Text, View
+  Platform, StyleSheet, Text, View,
 } from 'react-native';
 import { createStackNavigator, createAppContainer, createBottomTabNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
@@ -57,6 +57,9 @@ const MainNavigator = createBottomTabNavigator({
 const AppNavigator = createAppContainer(MainNavigator)
 export default  class App extends Component {
   render() {
+    <View>
+
+    </View>
     return <AppNavigator/>
   }
 }

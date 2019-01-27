@@ -5,14 +5,31 @@ import {
   StyleSheet,
   Text,
   FlatList,
-  View
+  View,
+  Button,
+  Modal,
+  Alert
 } from 'react-native';
 
-import { Button, Avatar, Header, } from 'react-native-elements';
+import { Avatar, Header,  List, ListItem } from 'react-native-elements';
+
+const data = [{
+      english: 's',
+      french: 'No'
+    }]
 
 class Establishment extends Component {
   state = {
     data: {},
+    modalVisible: false,
+  }
+
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
+
+  updateVote() {
+
   }
 
   componentDidMount() {
@@ -57,25 +74,59 @@ class Establishment extends Component {
         renderItem={this.renderItem}
       />
 
-      <View style={styles.container}>
-        <View style={styles.buttonContainer}>
-          <Button title="Upvote"
-          backgroundColor= '#8B0000'
-          color='#fffcfc'
+      <View>
+        <View >
+          <Button onPress={() => {
+            this.updateVote();
+          }}
+           title="Upvote"
+           color="blue"
           />
         </View>
-        <View style={styles.buttonContainer}>
-          <Button title="Downvote"
-           backgroundColor= '#070707'
-           color='#fffcfc'
+        <View>
+          <Button onPress={() => {
+            this.updateVote();
+          }}
+          title="Downvote"
+          color="black"
           />
         </View>
       </View>
+      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={this.state.modalVisible}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+        }}>
+        <List>
+        {
+          data.map((item) => (
+            <ListItem
+            title={"English: "+ item.english + " = French: " + item.french}
+            />
+          ))
+        }
+        </List>
+            <View>
+            <Button
+              onPress={() => {
+                this.setModalVisible(!this.state.modalVisible);
+              }}
+              title = 'Close Info'
+            />
+          </View>
+      </Modal>
 
+      <Button
+        onPress={() => {
+          this.setModalVisible(true);
+        }}
+        title = 'Extra Information'
+      />
     </View>
     )
   }
-
   renderItem(item) {
 
   }
