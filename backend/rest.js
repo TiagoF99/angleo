@@ -1,4 +1,5 @@
 var MongoClient = require('mongodb').MongoClient;
+var ObjectId = require('mongodb').ObjectID;
 
 const connection = "mongodb+srv://angleo:TkHBF5WsNXxR7jTa@cluster0-agkcf.gcp.mongodb.net/test?retryWrites=true";
 const database = "angleo";
@@ -35,16 +36,24 @@ function nearby(lat, long, km, res) {
     });
 }
 
-function search(qname, res) {
+function nameSearch(qname, res) {
     MongoClient.connect(connection, { useNewUrlParser: true }, function(err, db) {
         if (err) throw err;
         var dbo = db.db(database);
-        var query = {
-            name: {
-                '$regex' : /qname/,
-                '$options' : '$i'
-            }
-        };
+        var query = {$query:{name: {'$regex' : qname, "$options": "$i"}}, $orderby: {votes: -1}};
+        dbo.collection(collection).find(query).toArray(function(err, result) {
+            if (err) throw err;
+            res.json(result);
+            db.close();
+        });
+    });
+}
+
+function idFind(qid, res) {
+    MongoClient.connect(connection, { useNewUrlParser: true }, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db(database);
+        var query = ObjectId(qid);
         dbo.collection(collection).find(query).toArray(function(err, result) {
             if (err) throw err;
             res.json(result);
@@ -56,16 +65,15 @@ function search(qname, res) {
 // HELPERS
 
 let degrees_to_rad = (degrees) => {
-    console.log(degrees);
     return degrees * (Math.PI/180);
 }
 
 let rad_to_degrees = (rad) => {
-    console.log(rad);
     return rad * (180/Math.PI);
 }
 
 module.exports = {
-    search: search,
+    nameSearch: nameSearch,
+    idFind: idFind,
     nearby: nearby
 }
