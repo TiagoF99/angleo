@@ -31,7 +31,7 @@ function nearby(lat, long, km, res) {
         };
         dbo.collection(collection).find(query).toArray(function(err, result) {
             if (err) throw err;
-            res.json(result);
+            res.send(result);
             db.close();
         });
     });
@@ -44,7 +44,7 @@ function nameSearch(qname, res) {
         var query = {$query:{name: {'$regex' : qname, "$options": "$i"}}, $orderby: {votes: -1}};
         dbo.collection(collection).find(query).toArray(function(err, result) {
             if (err) throw err;
-            res.json(result);
+            res.send(result);
             db.close();
         });
     });
@@ -57,7 +57,7 @@ function idFind(qid, res) {
         var query = ObjectId(qid);
         dbo.collection(collection).find(query).toArray(function(err, result) {
             if (err) throw err;
-            res.json(result);
+            res.send(result);
             db.close();
         });
     });

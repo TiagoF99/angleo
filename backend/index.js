@@ -3,11 +3,6 @@ const app = express();
 require('handlebars');
 // Database rest functions
 var mongo = require('./rest.js');
-// Database dataviz functions
-var dataviz = require('./dataviz.js');
-var exphbs = require('express-handlebars');
-app.engine('handlebars', exphbs());
-app.set('view engine', 'handlebars');
 
 // Port
 app.set('port', process.env.PORT || 8000);
@@ -17,14 +12,7 @@ app.use(express.static('public'));
 
 // Data visualization for index
 app.get('/', function(req, res) {
-    res.send({
-        montreal_count: dataviz.count(res),
-        pointe_count: dataviz.count2(res),
-        laval_count: dataviz.count3(res),
-
-        lan_montreal_0: dataviz.language('Montréal', 0, res)
-
-    });
+    res.sendFile('index.html', { root: __dirname });
 });
 
 // GET: List locations nearby
@@ -47,13 +35,10 @@ app.get('/get/search/query/name/:name', function(req, res) {
     );
 });
 
-// GET: Returns the search of a specific id
+// Returns the search of a specific id
 app.get('/get/search/exact/id/:id', function(req, res) {
     res.type("json");
-    mongo.idFind(
-        req.params.id,
-        res
-    );
+    mongo.idFind(req.params.id, res);
 });
 
 // GOOGLE VISION -> TRANSLATE API

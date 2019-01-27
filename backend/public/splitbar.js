@@ -1,8 +1,8 @@
 (function() {
 	
 	var trace1 = {
-		  x: ['Montreal', 'Quebec City', 'Other City'],
-		  y: [20, 14, 25],
+		  x: ['Montreal', 'Pointe-Aux-Trembles', 'Laval'],
+		  y: [2304, 329, 291],
 		  type: 'bar',
 		  name: 'English',
 		  marker: {
@@ -12,8 +12,8 @@
 		};
 
 		var trace2 = {
-		  x: ['Montreal', 'Quebec City', 'Other City'],
-		  y: [12, 5, 21],
+		  x: ['Montreal', 'Pointe-Aux-Trembles', 'Laval'],
+		  y: [6719, 928, 729],
 		  type: 'bar',
 		  name: 'French',
 		  marker: {
@@ -23,8 +23,8 @@
 		};
 
 		var trace3 = {
-		  x: ['Montreal', 'Quebec City', 'Other City'],
-		  y: [7, 17, 11],
+		  x: ['Montreal', 'Pointe-Aux-Trembles', 'Laval'],
+		  y: [7291, 1130, 928],
 		  type: 'bar',
 		  name: 'Bi-Lingual',
 		  marker: {
@@ -34,8 +34,8 @@
 		};
 
 		var trace4 = {
-		  x: ['Montreal', 'Quebec City', 'Other City'],
-		  y: [9, 0, 31],
+		  x: ['Montreal', 'Pointe-Aux-Trembles', 'Laval'],
+		  y: [720, 52, 72],
 		  type: 'bar',
 		  name: 'Neither',
 		  marker: {
