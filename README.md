@@ -3,7 +3,7 @@ A platform for anglophones in Quebec, Canada.
 
 <small>**Please note that all API keys in the repository were disabled once the repository was made public.**</small>
 
-Developed while at [ConUHacks IV](https://conuhacks.io/) by [Alvin](https://github.com/alvintangz), Robin, [Philip](https://github.com/Veracities), and Tiago.
+Developed while at [ConUHacks IV](https://conuhacks.io/) by [Alvin](https://github.com/alvintangz), [Robin](https://github.com/RPHLuo), [Philip](https://github.com/Veracities), and [Tiago](https://github.com/TiagoF99).
 
 ### The Challenge
 The department of Canadian Heritage challenged hackers at ConUHacks IV from January 26 to 27. Hackers were tasked with creating a web and mobile application focused on proposing solutions to challenges faced by the English-speaking community in Quebec.
