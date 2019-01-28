@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 require('handlebars');
+
 // Database rest functions
 var mongo = require('./rest.js');
 
@@ -26,7 +27,7 @@ app.get('/get/nearby/:latitude/:longitude/:km', function(req, res) {
     );
 });
 
-// GET: Searches locations by query
+// GET: Searches places that contain the specified entry in its name
 app.get('/get/search/query/name/:name', function(req, res) {
     res.type("json");
     mongo.nameSearch(
@@ -35,13 +36,14 @@ app.get('/get/search/query/name/:name', function(req, res) {
     );
 });
 
-// Returns the search of a specific id
+// GET: Returns the search of a specific id
 app.get('/get/search/exact/id/:id', function(req, res) {
     res.type("json");
     mongo.idFind(req.params.id, res);
 });
 
-// GOOGLE VISION -> TRANSLATE API
+/*
+GOOGLE VISION -> TRANSLATE API (NOT COMPLETE)
 const multer = require('multer');
 const bodyParser = require('body-parser');
 const vision = require('@google-cloud/vision');
@@ -57,7 +59,9 @@ app.post('/post/translate', upload.single("image"), function (req, res, next) {
         console.error('ERROR:', err);
     });
 });
+*/
 
+// Server is running message
 app.listen(app.get('port'), function(){
-    console.log( 'Server running on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.' );
+    console.log('Server running on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
 });

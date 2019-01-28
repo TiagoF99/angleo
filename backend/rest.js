@@ -8,6 +8,9 @@ const collection = 'places';
 // Earths radius
 const earthrad = 6371;
 
+/*
+Sends a response to res with json data about places in the DB within a certain range of a certain location. 
+*/
 function nearby(lat, long, km, res) {
     MongoClient.connect(connection, { useNewUrlParser: true }, function(err, db) {
         if (err) throw err;
@@ -37,6 +40,9 @@ function nearby(lat, long, km, res) {
     });
 }
 
+/*
+Sends a response to res with json data about places with names in the DB that contain qname, ordered by votes.
+*/
 function nameSearch(qname, res) {
     MongoClient.connect(connection, { useNewUrlParser: true }, function(err, db) {
         if (err) throw err;
@@ -50,6 +56,9 @@ function nameSearch(qname, res) {
     });
 }
 
+/*
+Sends a response to res with json data of a place with in the DB that has the specified qid.
+*/
 function idFind(qid, res) {
     MongoClient.connect(connection, { useNewUrlParser: true }, function(err, db) {
         if (err) throw err;
