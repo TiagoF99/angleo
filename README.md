@@ -29,7 +29,8 @@ A static web application is included in the web part to display how the data cou
 The following technologies were used:
 - React Native for Mobile App Development
 - Node.js (+ Express.js) for delivering REST API to the App
-- HTML5, CSS, JavaScript for the Data Visualization Concept
+- HTML5, CSS, JavaScript + bootstrap for the Data Visualization frontend
+- plotly.js, Google Map API's for the graphs in the Data Visualization concept
 - MongoDB as the DB
 - Google Cloud Platfrom for their APIs and backend hosting
 
